@@ -5,9 +5,8 @@ public class Cart : MonoBehaviour
 {
     #region PARAMETERS
     [Header("Track Data")]
-    public Track[] tracks;
-    public int firstTrack;
-    int currentTrack;
+    public Track firstTrack;
+    Track currentTrack;
 
     [Header("Cart Parameters")]
     public float horizontalVelocity;
@@ -16,7 +15,6 @@ public class Cart : MonoBehaviour
     public float jumpHeight;
     public float jumpTime;
     #endregion
-
 
     #region MOVING_METHODS
     void MoveAlong(Track track, float distance)
@@ -70,6 +68,13 @@ public class Cart : MonoBehaviour
     }
     #endregion
 
+    #region SWITCHING
+    public void SwitchTrack(Track newTrack)
+    {
+        currentTrack = newTrack;
+    }
+    #endregion
+
     #region MONOBEHAVIOUR_METHODS
     void Awake()
     {
@@ -79,7 +84,7 @@ public class Cart : MonoBehaviour
     void FixedUpdate()
     {
         // Move along current track
-        MoveAlong(tracks[currentTrack], horizontalVelocity * Time.fixedDeltaTime);
+        MoveAlong(currentTrack, horizontalVelocity * Time.fixedDeltaTime);
     }
 
     void Update()

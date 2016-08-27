@@ -2,19 +2,23 @@
 using System.Collections;
 
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Collider2D))]
 public class Steering : MonoBehaviour
 {
     #region COMPONENTS
     SpriteRenderer _spriteRenderer;
+    Collider2D _collider2d;
     void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _collider2d = GetComponent<Collider2D>();
     }
     #endregion
 
     #region PARAMETERS
     public Option[] options;
     public int startOption = 0;
+    public LayerMask player;
     #endregion
 
     #region TYPES
@@ -50,6 +54,21 @@ public class Steering : MonoBehaviour
     void OnMouseDown()
     {
         SetOption(currentOption == (options.Length - 1) ? 0 : currentOption + 1);
+    }
+
+    bool locked = false;
+
+    void Update()
+    {
+        if (!locked)
+        {
+            // Try to "catch" player
+            RaycastHit2D hit = Physics2D.BoxCast(_collider2d.bounds.center, _collider2d.bounds.size, 0, Vector2.zero, 0, player);
+            if (hit.collider != null)
+            {
+                hit.collider.GetComponent<Cart>().SwitchTrack(CurrentOption.newTrack);
+            }
+        }
     }
     #endregion
 }
