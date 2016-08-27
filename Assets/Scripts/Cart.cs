@@ -1,8 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
+using Zenject;
 
 public class Cart : MonoBehaviour
 {
+    #region INJECTIONS
+    [Inject]
+    PauseManager pause;
+    #endregion
+
     #region PARAMETERS
     [Header("Track Data")]
     public Track firstTrack;
@@ -42,7 +47,7 @@ public class Cart : MonoBehaviour
     public bool isJumping = false;
     public void Jump()
     {
-        if (!isJumping)
+        if (!isJumping && !pause.IsPaused)
         {
             isJumping = true;
             jumpVelocity = JumpForce;
@@ -84,7 +89,8 @@ public class Cart : MonoBehaviour
     void FixedUpdate()
     {
         // Move along current track
-        MoveAlong(currentTrack, horizontalVelocity * Time.fixedDeltaTime);
+        if (!pause.IsPaused)
+            MoveAlong(currentTrack, horizontalVelocity * Time.fixedDeltaTime);
     }
 
     void Update()
