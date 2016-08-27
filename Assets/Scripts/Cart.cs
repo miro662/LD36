@@ -15,19 +15,35 @@ public class Cart : MonoBehaviour
 
     [Header("Cart Parameters")]
     public float horizontalVelocity;
+    public Transform sprite;
 
     [Header("Jumping")]
     public float jumpHeight;
     public float jumpTime;
+
     #endregion
 
     #region MOVING_METHODS
     void MoveAlong(Track track, float distance)
     {
         Vector3 newPosition = transform.position;
+        float verticalShift = Mathf.Min(Mathf.Abs(transform.position.y - currentTrack.transform.position.y), distance);
         if (!isJumping)
         {
-            newPosition.y = track.transform.position.y; // set position to current track position
+            bool shiftDir = transform.position.y > currentTrack.transform.position.y;
+            newPosition.y += (shiftDir ? -1 : 1) * verticalShift / Mathf.Sqrt(2);
+
+            // Rotate if
+            if (Mathf.Abs(verticalShift) == distance)
+            {
+                sprite.rotation = Quaternion.Euler(0, 0, (shiftDir ? -1 : 1) * 45);
+                sprite.localPosition = new Vector2((shiftDir ? 0.7f : 0.3f), 0.25f);
+            }
+            else
+            {
+                sprite.rotation = Quaternion.Euler(0, 0, 0);
+                sprite.localPosition = new Vector2(0, 0.25f);
+            }
         }
         else
         {
@@ -38,7 +54,7 @@ public class Cart : MonoBehaviour
                 isJumping = false;
             }
         }
-        newPosition.x += distance;
+        newPosition.x += distance  / ((verticalShift != 0) ? Mathf.Sqrt(2) : 1);
         transform.position = newPosition;
     }
     #endregion
