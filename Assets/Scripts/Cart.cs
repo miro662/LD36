@@ -11,17 +11,21 @@ public class Cart : MonoBehaviour
     #region PARAMETERS
     [Header("Track Data")]
     public Track firstTrack;
-    Track currentTrack;
+    public Track currentTrack;
 
     [Header("Cart Parameters")]
     public float horizontalVelocity;
     public Transform sprite;
+    public float acceleeration = .05f;
 
     [Header("Jumping")]
     public float jumpHeight;
     public float jumpTime;
 
     #endregion
+
+    [Inject]
+    GameManager manager;
 
     #region MOVING_METHODS
     void MoveAlong(Track track, float distance)
@@ -52,6 +56,8 @@ public class Cart : MonoBehaviour
             {
                 newPosition.y = track.transform.position.y;
                 isJumping = false;
+                manager.points += 5;
+                horizontalVelocity += acceleeration;
             }
         }
         newPosition.x += distance  / ((verticalShift != 0) ? Mathf.Sqrt(2) : 1);

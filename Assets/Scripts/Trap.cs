@@ -13,6 +13,7 @@ public class Trap : MonoBehaviour
     GameManager _manager;
 
     public LayerMask player;
+    public Track trapTrack;
 
     void Update()
     {
@@ -20,7 +21,8 @@ public class Trap : MonoBehaviour
         RaycastHit2D hit = Physics2D.BoxCast(_collider2d.bounds.center, _collider2d.bounds.size, 0, Vector2.zero, 0, player);
         if (hit.collider != null)
         {
-            _manager.Death();
+            if (hit.collider.GetComponent<Cart>().currentTrack == trapTrack)
+                _manager.Death();
         }
     }
 }
