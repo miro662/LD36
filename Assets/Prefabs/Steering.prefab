@@ -53,9 +53,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0.25, y: 0}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 1}
+  m_Size: {x: 1, y: 3}
 --- !u!114 &114000011211541828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -69,9 +69,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   options:
   - newTrack: {fileID: 0}
-    sprite: {fileID: 21300000, guid: da4eeb41a0d03dd45ada345bfe8b183d, type: 3}
+    sprite: {fileID: 21300000, guid: 7781c632f0afc4445b97f260688dcb06, type: 3}
   - newTrack: {fileID: 0}
-    sprite: {fileID: 21300000, guid: 94bae4f61f664d941931c2c087ed0a16, type: 3}
+    sprite: {fileID: 21300000, guid: 104896a27de7d9c4991017dc18e5d2a8, type: 3}
   startOption: 0
   player:
     serializedVersion: 2
@@ -105,7 +105,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: da4eeb41a0d03dd45ada345bfe8b183d, type: 3}
-  m_Color: {r: 0, g: 1, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 7781c632f0afc4445b97f260688dcb06, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

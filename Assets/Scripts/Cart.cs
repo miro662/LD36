@@ -37,7 +37,7 @@ public class Cart : MonoBehaviour
             if (Mathf.Abs(verticalShift) == distance)
             {
                 sprite.rotation = Quaternion.Euler(0, 0, (shiftDir ? -1 : 1) * 45);
-                sprite.localPosition = new Vector2((shiftDir ? 0.7f : 0.3f), 0.25f);
+                sprite.localPosition = new Vector2((shiftDir ? 0.8f : 0.3f), 0.25f);
             }
             else
             {
