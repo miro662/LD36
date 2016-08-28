@@ -22,7 +22,10 @@ public class Trap : MonoBehaviour
         if (hit.collider != null)
         {
             if (hit.collider.GetComponent<Cart>().currentTrack == trapTrack)
+            {
                 _manager.Death();
+                Destroy(hit.collider);
+            }
         }
     }
 }

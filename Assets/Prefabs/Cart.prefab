@@ -98,10 +98,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstTrack: {fileID: 0}
   currentTrack: {fileID: 0}
-  horizontalVelocity: 4
+  horizontalVelocity: 5
   sprite: {fileID: 4000011460913666}
   acceleeration: 0.2
-  jumpHeight: 2
+  jumpHeight: 1.5
   jumpTime: 0.5
   isJumping: 0
 --- !u!212 &212000011935742372
