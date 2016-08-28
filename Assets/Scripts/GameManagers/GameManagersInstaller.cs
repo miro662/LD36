@@ -7,6 +7,7 @@ public class GameManagersInstaller : MonoInstaller
     {
         Container.Bind<IInitializable>().To<PauseManager>().AsSingle();
         Container.Bind<PauseManager>().AsSingle().NonLazy();
+        Container.Bind<IInitializable>().To<GameManager>().AsSingle();
         Container.Bind<ITickable>().To<GameManager>().AsSingle();
         Container.Bind<GameManager>().AsSingle().NonLazy();
     }

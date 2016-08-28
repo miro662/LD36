@@ -66,7 +66,8 @@ public class Steering : MonoBehaviour
             RaycastHit2D hit = Physics2D.BoxCast(_collider2d.bounds.center, _collider2d.bounds.size, 0, Vector2.zero, 0, player);
             if (hit.collider != null)
             {
-                hit.collider.GetComponent<Cart>().SwitchTrack(CurrentOption.newTrack);
+                if (!hit.collider.GetComponent<Cart>().isJumping)
+                    hit.collider.GetComponent<Cart>().SwitchTrack(CurrentOption.newTrack);
             }
         }
     }
