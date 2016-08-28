@@ -13,6 +13,7 @@ public class Steering : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _collider2d = GetComponent<Collider2D>();
     }
+    public AudioClip steeringSound;
     #endregion
 
     #region PARAMETERS
@@ -54,6 +55,13 @@ public class Steering : MonoBehaviour
     void OnMouseDown()
     {
         SetOption(currentOption == (options.Length - 1) ? 0 : currentOption + 1);
+        AudioSource source = GetComponent<AudioSource>();
+        {
+            if (source != null)
+            {
+                source.PlayOneShot(steeringSound);
+            }
+        }
     }
 
     bool locked = false;

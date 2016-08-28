@@ -21,7 +21,7 @@ public class Cart : MonoBehaviour
     [Header("Jumping")]
     public float jumpHeight;
     public float jumpTime;
-
+    public AudioClip jumpSound;
     #endregion
 
     [Inject]
@@ -73,6 +73,13 @@ public class Cart : MonoBehaviour
         {
             isJumping = true;
             jumpVelocity = JumpForce;
+            AudioSource source = GetComponent<AudioSource>();
+            {
+                if (source != null)
+                {
+                    source.PlayOneShot(jumpSound);
+                }
+            }
         }
     }
 

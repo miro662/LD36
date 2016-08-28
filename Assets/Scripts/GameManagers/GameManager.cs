@@ -8,6 +8,8 @@ public class GameManager : ITickable, IInitializable
     PauseManager pause;
     [Inject]
     GameManager manager;
+    [Inject]
+    AudioClip deathSound;
 
     public int points = 0;
 
@@ -35,5 +37,6 @@ public class GameManager : ITickable, IInitializable
     {
         deathScreen.SetActive(true);
         GameObject.Find("DPoints").GetComponent<Text>().text = manager.points + "";
+        AudioSource.PlayClipAtPoint(deathSound, GameObject.FindGameObjectWithTag("MainCamera").transform.position);
     }
 }
